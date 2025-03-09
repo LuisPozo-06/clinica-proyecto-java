@@ -3,12 +3,12 @@ package pe.clinica.demo.model;
 import java.util.Date;
 
 public class cita {
-    Integer _id_cita;
-    String _estado;
-    Date _hora;
-    Date _fecha_cita;
-    Integer _id_paciente;
-    Integer _id_medico;
+    private Integer _id_cita;
+    private String _estado;
+    private Date _hora;
+    private Date _fecha_cita;
+    private Integer _id_paciente;
+    private Integer _id_medico;
 
     public cita(Integer _id_cita, String _estado, Date _hora, Date _fecha_cita, Integer _id_paciente, Integer _id_medico) {
         this._id_cita = _id_cita;

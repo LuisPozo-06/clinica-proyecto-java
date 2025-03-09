@@ -1,11 +1,11 @@
 package pe.clinica.demo.model;
 
 public class administrativo {
-    Integer _id_administrativa;
-    String _nombres_apellidos;
-    String _cargo;
-    Integer _telefono;
-    String _correo;
+    private Integer _id_administrativa;
+    private String _nombres_apellidos;
+    private String _cargo;
+    private Integer _telefono;
+    private String _correo;
 
     public administrativo(Integer _id_administrativa, String _nombres_apellidos, String _cargo, Integer _telefono, String _correo) {
         this._id_administrativa = _id_administrativa;

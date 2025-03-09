@@ -3,13 +3,13 @@ package pe.clinica.demo.model;
 import java.util.Date;
 
 public class detalle {
-    Integer _ID_detalle;
-    Integer _ID_Receta;
-    Integer _ID_Medicamento;
-    Integer _Cantidad;
-    Integer _Unidad;
-    String _Instrucciones;
-    String _Dosis;
+    private Integer _ID_detalle;
+    private Integer _ID_Receta;
+    private Integer _ID_Medicamento;
+    private Integer _Cantidad;
+    private Integer _Unidad;
+    private String _Instrucciones;
+    private String _Dosis;
 
     public detalle(Integer _ID_detalle, Integer _ID_Receta, Integer _ID_Medicamento, Integer _Cantidad, Integer _Unidad, String _Instrucciones, String _Dosis) {
         this._ID_detalle = _ID_detalle;
