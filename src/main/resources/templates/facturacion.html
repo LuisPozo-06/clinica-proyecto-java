@@ -43,6 +43,7 @@
                         <label for="paciente" class="form-label">A nombre</label>
                         <select class="form-select" id="paciente" name="paciente" required>
                             <option value="">Seleccione un paciente</option>
+                            <option th:each="paciente : ${pacientes}" th:value="${paciente.id}" th:text="${paciente.nombre}"></option>
                         </select>
                     </div>
                 </div>
@@ -51,6 +52,7 @@
                         <label for="encargado" class="form-label">Encargado</label>
                         <select class="form-select" id="encargado" name="encargado" required>
                             <option value="">Seleccione un encargado</option>
+                            <option th:each="encargado : ${encargados}" th:value="${encargado.id}" th:text="${encargado.nombre}"></option>
                         </select>
                     </div>
                     <div class="col-md-6">
@@ -97,8 +99,8 @@
                 <tbody>
                 <tr th:each="factura : ${facturas}">
                     <td th:text="${factura.id}"></td>
-                    <td th:text="${factura.paciente}"></td>
-                    <td th:text="${factura.encargado}"></td>
+                    <td th:text="${factura.paciente.nombre}"></td>
+                    <td th:text="${factura.encargado.nombre}"></td>
                     <td th:text="${factura.fecha}"></td>
                     <td th:text="${factura.monto}"></td>
                     <td th:text="${factura.estado}"></td>

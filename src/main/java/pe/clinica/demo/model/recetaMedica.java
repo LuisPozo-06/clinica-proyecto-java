@@ -2,13 +2,13 @@ package pe.clinica.demo.model;
 
 import java.util.Date;
 
-public class receta_medica {
+public class recetaMedica {
     private int idReceta;
     private int idMedicamento;
     private int idMedico;
     private Date fechaReceta;
 
-    public receta_medica(int idReceta, int idMedicamento, int idMedico, Date fechaReceta) {
+    public recetaMedica(int idReceta, int idMedicamento, int idMedico, Date fechaReceta) {
         this.idReceta = idReceta;
         this.idMedicamento = idMedicamento;
         this.idMedico = idMedico;
