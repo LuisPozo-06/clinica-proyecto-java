@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clínica - Gestión de Citas</title>
+    <title>Clínica - Citas</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 <body>
+
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container">
@@ -16,11 +17,11 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="#">Inicio</a></li>
+                <li class="nav-item"><a class="nav-link" href="/home">Inicio</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Pacientes</a></li>
                 <li class="nav-item"><a class="nav-link active" href="#">Citas</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Médicos</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Administrativos</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Facturación</a></li>
             </ul>
         </div>
     </div>
@@ -30,43 +31,47 @@
 <div class="container mt-5">
     <h2 class="text-center text-primary">Gestión de Citas</h2>
 
+    <!-- Formulario de Registro de Citas -->
     <div class="card shadow-sm">
-        <div class="card-header bg-primary text-white text-center">Información de la Cita</div>
+        <div class="card-header bg-primary text-white text-center">Registrar Cita</div>
         <div class="card-body">
-            <form th:action="@{/cita/guardar}" method="post" th:object="${cita}">
+            <form th:action="@{/citas/guardar}" method="post">
                 <div class="row mb-3">
                     <div class="col-md-6">
-                        <label for="idCita" class="form-label">ID Cita</label>
-                        <input type="text" class="form-control" id="idCita" th:field="*{idCita}" readonly>
+                        <label for="id_cita" class="form-label">ID Cita</label>
+                        <input type="text" class="form-control" id="id_cita" name="id_cita" readonly>
                     </div>
                     <div class="col-md-6">
-                        <label for="estado" class="form-label">Estado</label>
-                        <select class="form-select" id="estado" th:field="*{estado}" required>
-                            <option value="">Seleccione un estado</option>
-                            <option value="Programada">Programada</option>
-                            <option value="Cancelada">Cancelada</option>
-                            <option value="Completada">Completada</option>
+                        <label for="id_paciente" class="form-label">Paciente</label>
+                        <select class="form-select" id="id_paciente" name="id_paciente" required>
+                            <option value="">Seleccione un paciente</option>
                         </select>
                     </div>
                 </div>
                 <div class="row mb-3">
                     <div class="col-md-6">
-                        <label for="hora" class="form-label">Hora</label>
-                        <input type="time" class="form-control" id="hora" th:field="*{hora}" required>
+                        <label for="id_medico" class="form-label">Médico</label>
+                        <select class="form-select" id="id_medico" name="id_medico" required>
+                            <option value="">Seleccione un médico</option>
+                        </select>
                     </div>
                     <div class="col-md-6">
-                        <label for="fechaCita" class="form-label">Fecha de la Cita</label>
-                        <input type="date" class="form-control" id="fechaCita" th:field="*{fechaCita}" required>
+                        <label for="fecha_cita" class="form-label">Fecha</label>
+                        <input type="date" class="form-control" id="fecha_cita" name="fecha_cita" required>
                     </div>
                 </div>
                 <div class="row mb-3">
                     <div class="col-md-6">
-                        <label for="idPaciente" class="form-label">ID Paciente</label>
-                        <input type="number" class="form-control" id="idPaciente" th:field="*{idPaciente}" required>
+                        <label for="hora" class="form-label">Hora</label>
+                        <input type="time" class="form-control" id="hora" name="hora" required>
                     </div>
                     <div class="col-md-6">
-                        <label for="idMedico" class="form-label">ID Médico</label>
-                        <input type="number" class="form-control" id="idMedico" th:field="*{idMedico}" required>
+                        <label for="estado" class="form-label">Estado</label>
+                        <select class="form-select" id="estado" name="estado" required>
+                            <option value="Pendiente">Pendiente</option>
+                            <option value="Confirmada">Confirmada</option>
+                            <option value="Cancelada">Cancelada</option>
+                        </select>
                     </div>
                 </div>
                 <div class="d-flex justify-content-between">
@@ -79,32 +84,27 @@
 
 
     <div class="card mt-4 shadow-sm">
-        <div class="card-header bg-primary text-white text-center">Citas Registradas</div>
+        <div class="card-header bg-primary text-white text-center">Listado de Citas</div>
         <div class="card-body">
             <table class="table table-bordered text-center">
                 <thead>
                 <tr>
-                    <th>ID Cita</th>
-                    <th>Estado</th>
-                    <th>Hora</th>
+                    <th>ID</th>
+                    <th>Paciente</th>
+                    <th>Médico</th>
                     <th>Fecha</th>
-                    <th>ID Paciente</th>
-                    <th>ID Médico</th>
-                    <th>Acciones</th>
+                    <th>Hora</th>
+                    <th>Estado</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="cita : ${listaCitas}">
-                    <td th:text="${cita.idCita}"></td>
-                    <td th:text="${cita.estado}"></td>
+                <tr th:each="cita : ${citas}">
+                    <td th:text="${cita.id_cita}"></td>
+                    <td th:text="${cita.id_paciente}"></td>
+                    <td th:text="${cita.id_medico}"></td>
+                    <td th:text="${cita.fecha_cita}"></td>
                     <td th:text="${cita.hora}"></td>
-                    <td th:text="${cita.fechaCita}"></td>
-                    <td th:text="${cita.idPaciente}"></td>
-                    <td th:text="${cita.idMedico}"></td>
-                    <td>
-                        <button type="button" class="btn btn-warning btn-sm">Editar</button>
-                        <button type="button" class="btn btn-danger btn-sm">Eliminar</button>
-                    </td>
+                    <td th:text="${cita.estado}"></td>
                 </tr>
                 </tbody>
             </table>
@@ -114,5 +114,6 @@
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
