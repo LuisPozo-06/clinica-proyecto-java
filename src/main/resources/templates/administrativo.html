@@ -1,58 +1,107 @@
 <!DOCTYPE html>
-<html lang="es">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Administrador - Clínica</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Clínica - Administrativos</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 <body>
+<!-- Barra de navegación -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">Panel Administrativo</a>
+    <div class="container">
+        <a class="navbar-brand" href="#">Clínica Salud+</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav ms-auto">
                 <li class="nav-item"><a class="nav-link" href="#">Inicio</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Administradores</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Pacientes</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Citas</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Médicos</a></li>
+                <li class="nav-item"><a class="nav-link active" href="#">Administrativos</a></li>
             </ul>
         </div>
     </div>
 </nav>
 
-<div class="container mt-4">
-    <h2>Gestión de Administradores</h2>
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Email</th>
-            <th>Acciones</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>1</td>
-            <td>Juan Pérez</td>
-            <td>juanperez@example.com</td>
-            <td>
-                <button class="btn btn-warning btn-sm">Editar</button>
-                <button class="btn btn-danger btn-sm">Eliminar</button>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+<!-- Sección principal -->
+<div class="container mt-5">
+    <h2 class="text-center text-primary">Gestión de Administrativos</h2>
+
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white text-center">Información del Administrativo</div>
+        <div class="card-body">
+            <form th:action="@{/administrativo/guardar}" method="post" th:object="${administrativo}">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="idAdministrativo" class="form-label">ID Administrativo</label>
+                        <input type="text" class="form-control" id="idAdministrativo" th:field="*{idAdministrativo}" readonly>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="nombresApellidos" class="form-label">Nombres y Apellidos</label>
+                        <input type="text" class="form-control" id="nombresApellidos" th:field="*{nombresApellidos}" required>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="cargo" class="form-label">Cargo</label>
+                        <input type="text" class="form-control" id="cargo" th:field="*{cargo}" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="telefono" class="form-label">Teléfono</label>
+                        <input type="text" class="form-control" id="telefono" th:field="*{telefono}" required>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="correo" class="form-label">Correo</label>
+                        <input type="email" class="form-control" id="correo" th:field="*{correo}" required>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                    <button type="reset" class="btn btn-secondary">Limpiar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Tabla de administrativos -->
+    <div class="card mt-4 shadow-sm">
+        <div class="card-header bg-primary text-white text-center">Administrativos Registrados</div>
+        <div class="card-body">
+            <table class="table table-bordered text-center">
+                <thead>
+                <tr>
+                    <th>ID Administrativo</th>
+                    <th>Nombres y Apellidos</th>
+                    <th>Cargo</th>
+                    <th>Teléfono</th>
+                    <th>Correo</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="admin : ${listaAdministrativos}">
+                    <td th:text="${admin.idAdministrativo}"></td>
+                    <td th:text="${admin.nombresApellidos}"></td>
+                    <td th:text="${admin.cargo}"></td>
+                    <td th:text="${admin.telefono}"></td>
+                    <td th:text="${admin.correo}"></td>
+                    <td>
+                        <button type="button" class="btn btn-warning btn-sm">Editar</button>
+                        <button type="button" class="btn btn-danger btn-sm">Eliminar</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 
-<footer class="bg-light text-center py-3 mt-4">
-    <p>&copy; 2025 Clínica. Todos los derechos reservados.</p>
-</footer>
-
+<!-- Scripts de Bootstrap -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
