@@ -1,16 +1,17 @@
 package pe.clinica.demo.model;
 
-public class especialidad {
+import jakarta.persistence.*;
 
+@Entity
+@Table(name = "especialidad")
+
+public class EspecialidadModel {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idEspecialidad;
     private String nombreEspecialidad;
     private String descripcion;
 
-    public especialidad(int idEspecialidad, String nombreEspecialidad, String descripcion) {
-        this.idEspecialidad = idEspecialidad;
-        this.nombreEspecialidad = nombreEspecialidad;
-        this.descripcion = descripcion;
-    }
 
     public int getIdEspecialidad() {
         return idEspecialidad;

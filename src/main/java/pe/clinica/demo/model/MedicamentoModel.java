@@ -1,17 +1,20 @@
 package pe.clinica.demo.model;
 
-public class medicamento {
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "medicamento")
+
+public class MedicamentoModel {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int medicamentoId;
     private String medicamentoNombre;
     private String medicamentoDescripcion;
     private String medicamentoTipo;
 
-    public medicamento(int medicamentoId, String medicamentoNombre, String medicamentoDescripcion, String medicamentoTipo) {
-        this.medicamentoId = medicamentoId;
-        this.medicamentoNombre = medicamentoNombre;
-        this.medicamentoDescripcion = medicamentoDescripcion;
-        this.medicamentoTipo = medicamentoTipo;
-    }
+
 
     public int getMedicamentoId() {
         return medicamentoId;

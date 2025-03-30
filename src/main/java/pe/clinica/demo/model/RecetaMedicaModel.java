@@ -1,19 +1,18 @@
 package pe.clinica.demo.model;
 
-import java.util.Date;
+import jakarta.persistence.*;
 
-public class recetaMedica {
+import java.util.Date;
+@Entity
+@Table(name = "receta_medica")
+
+public class RecetaMedicaModel {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idReceta;
     private int idMedicamento;
     private int idMedico;
     private Date fechaReceta;
-
-    public recetaMedica(int idReceta, int idMedicamento, int idMedico, Date fechaReceta) {
-        this.idReceta = idReceta;
-        this.idMedicamento = idMedicamento;
-        this.idMedico = idMedico;
-        this.fechaReceta = fechaReceta;
-    }
 
     public int getIdReceta() {
         return idReceta;

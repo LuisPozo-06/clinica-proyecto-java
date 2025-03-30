@@ -1,8 +1,14 @@
 package pe.clinica.demo.model;
 
-import java.util.Date;
+import jakarta.persistence.*;
 
-public class cita {
+import java.util.Date;
+@Entity
+@Table (name = "cita")
+
+public class CitaModel {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer _id_cita;
     private String _estado;
     private Date _hora;
@@ -10,14 +16,6 @@ public class cita {
     private Integer _id_paciente;
     private Integer _id_medico;
 
-    public cita(Integer _id_cita, String _estado, Date _hora, Date _fecha_cita, Integer _id_paciente, Integer _id_medico) {
-        this._id_cita = _id_cita;
-        this._estado = _estado;
-        this._hora = _hora;
-        this._fecha_cita = _fecha_cita;
-        this._id_paciente = _id_paciente;
-        this._id_medico = _id_medico;
-    }
 
     public Integer get_id_cita() {
         return _id_cita;

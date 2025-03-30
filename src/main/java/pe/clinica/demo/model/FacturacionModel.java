@@ -1,6 +1,14 @@
 package pe.clinica.demo.model;
 
-public class facturacion {
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "facturacion")
+
+public class FacturacionModel {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idFacturacion;
     private int idPaciente;
     private int idAdministrativo;
@@ -8,14 +16,6 @@ public class facturacion {
     private double monto;
     private String estadoPago;
 
-    public facturacion(int idFacturacion, int idPaciente, int idAdministrativo, String fechaFacturacion, double monto, String estadoPago) {
-        this.idFacturacion = idFacturacion;
-        this.idPaciente = idPaciente;
-        this.idAdministrativo = idAdministrativo;
-        this.fechaFacturacion = fechaFacturacion;
-        this.monto = monto;
-        this.estadoPago = estadoPago;
-    }
 
     public int getIdFacturacion() {
         return idFacturacion;

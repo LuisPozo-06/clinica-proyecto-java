@@ -1,7 +1,13 @@
 package pe.clinica.demo.model;
 
-public class medico {
+import jakarta.persistence.*;
 
+@Entity
+@Table(name = "medico")
+
+public class MedicoModel {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idMedico;
     private int DniMedico;
     private int idEspecialidad;
@@ -9,14 +15,7 @@ public class medico {
     private int telefonoMedico;
     private String correoMedico;
 
-    public medico(int idMedico, int dniMedico, int idEspecialidad, String nombreApellido, int telefonoMedico, String correoMedico) {
-        this.idMedico = idMedico;
-        DniMedico = dniMedico;
-        this.idEspecialidad = idEspecialidad;
-        this.nombreApellido = nombreApellido;
-        this.telefonoMedico = telefonoMedico;
-        this.correoMedico = correoMedico;
-    }
+
 
     public int getIdMedico() {
         return idMedico;

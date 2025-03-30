@@ -1,8 +1,12 @@
 package pe.clinica.demo.model;
 
-import java.util.Date;
+import jakarta.persistence.*;
 
-public class detalle {
+@Entity
+@Table(name = "detalle")
+public class DetalleModel {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer _ID_detalle;
     private Integer _ID_Receta;
     private Integer _ID_Medicamento;
@@ -11,15 +15,7 @@ public class detalle {
     private String _Instrucciones;
     private String _Dosis;
 
-    public detalle(Integer _ID_detalle, Integer _ID_Receta, Integer _ID_Medicamento, Integer _Cantidad, Integer _Unidad, String _Instrucciones, String _Dosis) {
-        this._ID_detalle = _ID_detalle;
-        this._ID_Receta = _ID_Receta;
-        this._ID_Medicamento = _ID_Medicamento;
-        this._Cantidad = _Cantidad;
-        this._Unidad = _Unidad;
-        this._Instrucciones = _Instrucciones;
-        this._Dosis = _Dosis;
-    }
+
 
     public Integer get_ID_detalle() {
         return _ID_detalle;

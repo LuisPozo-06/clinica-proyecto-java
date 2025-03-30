@@ -1,8 +1,14 @@
 package pe.clinica.demo.model;
 
-import java.util.Date;
+import jakarta.persistence.*;
 
-public class paciente {
+import java.util.Date;
+@Entity
+@Table(name = "paciente")
+
+public class PacienteModel {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idPaciente;
     private int DniPaciente;
     private String NombrePaciente;
@@ -10,14 +16,7 @@ public class paciente {
     private int telefonoPaciente;
     private String correoPaciente;
 
-    public paciente(int idPaciente, int dniPaciente, String nombrePaciente, Date fechaPaciente, int telefonoPaciente, String correoPaciente) {
-        this.idPaciente = idPaciente;
-        DniPaciente = dniPaciente;
-        NombrePaciente = nombrePaciente;
-        FechaPaciente = fechaPaciente;
-        this.telefonoPaciente = telefonoPaciente;
-        this.correoPaciente = correoPaciente;
-    }
+
 
     public int getIdPaciente() {
         return idPaciente;

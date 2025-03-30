@@ -1,22 +1,20 @@
 package pe.clinica.demo.model;
+import jakarta.persistence.*;
 
-public class Administrator {
+@Entity
+@Table(name = "administrativo")
+
+
+public class AdministratorModel {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idAdministrativo;
     private String nombresApellidos;
     private String cargo;
     private Integer telefono;
     private String correo;
 
-    // Constructor
-    public Administrator(Integer idAdministrativo, String nombresApellidos, String cargo, Integer telefono, String correo) {
-        this.idAdministrativo = idAdministrativo;
-        this.nombresApellidos = nombresApellidos;
-        this.cargo = cargo;
-        this.telefono = telefono;
-        this.correo = correo;
-    }
-
-    // Getters y Setters
     public Integer getIdAdministrativo() {
         return idAdministrativo;
     }

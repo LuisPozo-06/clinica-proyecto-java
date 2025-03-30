@@ -1,20 +1,19 @@
 package pe.clinica.demo.model;
 
-public class historia_medica {
+import jakarta.persistence.*;
 
+@Entity
+@Table(name = "historia_medica")
+
+public class Historia_medicaModel {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idHistoria;
     private int idPaciente;
     private String diagnostico;
     private String fecha;
     private String tratamiento;
 
-    public historia_medica(int idHistoria, int idPaciente, String diagnostico, String fecha, String tratamiento) {
-        this.idHistoria = idHistoria;
-        this.idPaciente = idPaciente;
-        this.diagnostico = diagnostico;
-        this.fecha = fecha;
-        this.tratamiento = tratamiento;
-    }
 
     public int getIdHistoria() {
         return idHistoria;
