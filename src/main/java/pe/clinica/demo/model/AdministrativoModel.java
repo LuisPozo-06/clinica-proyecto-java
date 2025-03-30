@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 @Table(name = "administrativo")
 
 
-public class AdministratorModel {
+public class AdministrativoModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
