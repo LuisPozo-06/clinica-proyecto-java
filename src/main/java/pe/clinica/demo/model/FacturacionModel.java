@@ -10,12 +10,15 @@ public class FacturacionModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idFacturacion;
-    private int idPaciente;
-    private int idAdministrativo;
+    @ManyToOne
+    @JoinColumn(name = "ID_Paciente")
+    private PacienteModel paciente;
+    @ManyToOne
+    @JoinColumn(name = "ID_Administrativo")
+    private AdministrativoModel administrativo;
     private String fechaFacturacion;
     private double monto;
     private String estadoPago;
-
 
     public int getIdFacturacion() {
         return idFacturacion;
@@ -23,22 +26,6 @@ public class FacturacionModel {
 
     public void setIdFacturacion(int idFacturacion) {
         this.idFacturacion = idFacturacion;
-    }
-
-    public int getIdPaciente() {
-        return idPaciente;
-    }
-
-    public void setIdPaciente(int idPaciente) {
-        this.idPaciente = idPaciente;
-    }
-
-    public int getIdAdministrativo() {
-        return idAdministrativo;
-    }
-
-    public void setIdAdministrativo(int idAdministrativo) {
-        this.idAdministrativo = idAdministrativo;
     }
 
     public String getFechaFacturacion() {

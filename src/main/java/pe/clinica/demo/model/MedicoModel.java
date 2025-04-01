@@ -10,12 +10,12 @@ public class MedicoModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idMedico;
     private int DniMedico;
-    private int idEspecialidad;
+    @ManyToOne
+    @JoinColumn(name="ID_Especialidad")
+    private EspecialidadModel especialidad;
     private String nombreApellido;
     private int telefonoMedico;
     private String correoMedico;
-
-
 
     public int getIdMedico() {
         return idMedico;
@@ -31,14 +31,6 @@ public class MedicoModel {
 
     public void setDniMedico(int dniMedico) {
         DniMedico = dniMedico;
-    }
-
-    public int getIdEspecialidad() {
-        return idEspecialidad;
-    }
-
-    public void setIdEspecialidad(int idEspecialidad) {
-        this.idEspecialidad = idEspecialidad;
     }
 
     public String getNombreApellido() {

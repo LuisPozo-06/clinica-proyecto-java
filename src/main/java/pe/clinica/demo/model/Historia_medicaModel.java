@@ -9,11 +9,12 @@ public class Historia_medicaModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idHistoria;
-    private int idPaciente;
+    @ManyToOne
+    @JoinColumn(name = "ID_Paciente")
+    private PacienteModel paciente;
     private String diagnostico;
     private String fecha;
     private String tratamiento;
-
 
     public int getIdHistoria() {
         return idHistoria;
@@ -21,14 +22,6 @@ public class Historia_medicaModel {
 
     public void setIdHistoria(int idHistoria) {
         this.idHistoria = idHistoria;
-    }
-
-    public int getIdPaciente() {
-        return idPaciente;
-    }
-
-    public void setIdPaciente(int idPaciente) {
-        this.idPaciente = idPaciente;
     }
 
     public String getDiagnostico() {

@@ -10,9 +10,13 @@ public class RecetaMedicaModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idReceta;
-    private int idMedicamento;
-    private int idMedico;
-    private Date fechaReceta;
+    @ManyToOne
+    @JoinColumn(name="ID_Medicamento")
+    private MedicamentoModel medicamento;
+    @ManyToOne
+    @JoinColumn(name = "ID_Medico")
+    private MedicoModel medico;
+    private Date fechaReceta;;
 
     public int getIdReceta() {
         return idReceta;
@@ -20,22 +24,6 @@ public class RecetaMedicaModel {
 
     public void setIdReceta(int idReceta) {
         this.idReceta = idReceta;
-    }
-
-    public int getIdMedicamento() {
-        return idMedicamento;
-    }
-
-    public void setIdMedicamento(int idMedicamento) {
-        this.idMedicamento = idMedicamento;
-    }
-
-    public int getIdMedico() {
-        return idMedico;
-    }
-
-    public void setIdMedico(int idMedico) {
-        this.idMedico = idMedico;
     }
 
     public Date getFechaReceta() {
