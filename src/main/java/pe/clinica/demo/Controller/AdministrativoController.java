@@ -11,14 +11,8 @@ import java.util.List;
 
 @Controller
 public class AdministrativoController {
-
-    @Autowired
-    private AdministrativoRepository administrativoRepository;
-
     @GetMapping("/administrativo")
-    public String administrativo(Model model) {
-        List<AdministrativoModel> administrativos = administrativoRepository.findAll();
-        model.addAttribute("administrativos", administrativos);
-        return "administrativo"; // Nombre del archivo HTML en templates
+    public String administrativo() {
+        return "administrativo";
     }
 }
