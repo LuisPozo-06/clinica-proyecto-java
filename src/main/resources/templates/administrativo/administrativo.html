@@ -8,7 +8,6 @@
 </head>
 <body>
 
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container">
         <a class="navbar-brand" href="#">Clínica Salud+</a>
@@ -25,8 +24,8 @@
                 <li class="nav-item"><a class="nav-link" href="/administrativo">Administrativo</a></li>
                 <li class="nav-item"><a class="nav-link" href="/cita">Citas salud</a></li>
                 <li class="nav-item"><a class="nav-link" href="/detalle">Detalles</a></li>
-                <li class="nav-item"><a class="nav-link" href="/especialidad"> Especialidad</a></li>
-                <li class="nav-item"><a class="nav-link" href="/recetaMedica"> Receta Medica</a></li>
+                <li class="nav-item"><a class="nav-link" href="/especialidad">Especialidad</a></li>
+                <li class="nav-item"><a class="nav-link" href="/recetaMedica">Receta Medica</a></li>
             </ul>
         </div>
     </div>
@@ -35,34 +34,30 @@
 <div class="container mt-5">
     <h2 class="text-center text-primary">Gestión de Administrativos</h2>
 
-
+    <!-- Formulario para crear o editar administrativo -->
     <div class="card shadow-sm">
         <div class="card-header bg-primary text-white text-center">Registrar Administrativo</div>
         <div class="card-body">
-            <form th:action="@{/administrativos/guardar}" method="post">
+            <form th:action="@{/administrativo/save}" method="post">
                 <div class="row mb-3">
                     <div class="col-md-6">
-                        <label for="idadministrativo" class="form-label">ID Administrativo</label>
-                        <input type="text" class="form-control" id="idAdministrativo" name="idadministrativo" readonly>
+                        <label for="nombresapellidos" class="form-label">Nombres y Apellidos</label>
+                        <input type="text" class="form-control" id="nombresapellidos" name="nombresapellidos" required>
                     </div>
-                    <div class="col-md-6">
-                        <label for="nombresApellidos" class="form-label">Nombres y Apellidos</label>
-                        <input type="text" class="form-control" id="nombresApellidos" name="nombresApellidos" required>
-                    </div>
-                </div>
-                <div class="row mb-3">
                     <div class="col-md-6">
                         <label for="cargo" class="form-label">Cargo</label>
                         <input type="text" class="form-control" id="cargo" name="cargo" required>
                     </div>
+                </div>
+                <div class="row mb-3">
                     <div class="col-md-6">
                         <label for="telefono" class="form-label">Teléfono</label>
-                        <input type="number" class="form-control" id="telefono" name="telefono" required>
+                        <input type="text" class="form-control" id="telefono" name="telefono" required>
                     </div>
-                </div>
-                <div class="mb-3">
-                    <label for="correo" class="form-label">Correo Electrónico</label>
-                    <input type="email" class="form-control" id="correo" name="correo" required>
+                    <div class="col-md-6">
+                        <label for="correo" class="form-label">Correo Electrónico</label>
+                        <input type="email" class="form-control" id="correo" name="correo" required>
+                    </div>
                 </div>
                 <div class="d-flex justify-content-between">
                     <button type="submit" class="btn btn-success">Guardar</button>
@@ -72,7 +67,7 @@
         </div>
     </div>
 
-
+    <!-- Tabla de administrativos existentes -->
     <div class="card mt-4 shadow-sm">
         <div class="card-header bg-primary text-white text-center">Listado de Administrativos</div>
         <div class="card-body">
@@ -84,6 +79,7 @@
                     <th>Cargo</th>
                     <th>Teléfono</th>
                     <th>Correo</th>
+                    <th>Acciones</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -93,6 +89,13 @@
                     <td th:text="${administrativo.cargo}"></td>
                     <td th:text="${administrativo.telefono}"></td>
                     <td th:text="${administrativo.correo}"></td>
+                    <td>
+                        <!-- Eliminar -->
+                        <form th:action="@{/administrativo/delete/{id}(id=${administrativo.idadministrativo})}" method="post">
+                            <input type="hidden" name="_method" value="delete"/>
+                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                        </form>
+                    </td>
                 </tr>
                 </tbody>
             </table>

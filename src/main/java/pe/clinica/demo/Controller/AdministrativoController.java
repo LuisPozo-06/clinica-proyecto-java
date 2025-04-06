@@ -14,6 +14,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/administrativo")
 public class AdministrativoController {
+
     private final AdministrativoService administrativoService;
 
     public AdministrativoController(AdministrativoService administrativoService) {
@@ -43,11 +44,20 @@ public class AdministrativoController {
     }
 
     @PostMapping("/save")
-    public String save(@ModelAttribute("administrativo")
-                       AdministrativoModel administrativoModel){
+    public String save(@ModelAttribute("administrativo") AdministrativoModel administrativoModel) {
         administrativoService.guardarAdministrativos(administrativoModel);
         return "redirect:/administrativo";
     }
+
+    @PostMapping("/delete/{id}")
+    public String deleteAdministrativo(@PathVariable("id") Long id) {
+        administrativoService.eliminarAdministrativo(Math.toIntExact(id));
+        return "redirect:/administrativo";
+    }
+
+
+
+
 
 }
 
