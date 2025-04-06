@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 import java.util.Date;
 @Entity
-@Table(name = "receta_medica")
+@Table(name = "recetamedica")
 
 public class RecetaMedicaModel {
     @Id
@@ -16,7 +16,7 @@ public class RecetaMedicaModel {
     @ManyToOne
     @JoinColumn(name = "idmedico")
     private MedicoModel medico;
-    private Date fechareceta;;
+    private Date fechareceta;
 
     public int getIdreceta() {
         return idreceta;
