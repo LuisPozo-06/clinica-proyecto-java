@@ -24,7 +24,7 @@ public class AdministrativoController {
     public String index(Model model) {
         model.addAttribute("administrativos",
                administrativoService.obtenerAdministartivo());
-        return "administrativo/index";
+        return "administrativo/administrativo";
     }
     @GetMapping("/create")
     public String create(Model model){
@@ -39,7 +39,7 @@ public class AdministrativoController {
                        @PathVariable int id){
         model.addAttribute("administrativo",
                 administrativoService.obtenerAdministrativoXid(id));
-        return "administrativo./edit";
+        return "administrativo/edit";
     }
 
     @PostMapping("/save")

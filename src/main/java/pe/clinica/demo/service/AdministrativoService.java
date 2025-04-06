@@ -2,6 +2,7 @@ package pe.clinica.demo.service;
 
 import org.springframework.stereotype.Service;
 import pe.clinica.demo.model.AdministrativoModel;
+import pe.clinica.demo.model.CitaModel;
 import pe.clinica.demo.repository.AdministrativoRepository;
 import java.util.List;
 import java.util.function.Supplier;
@@ -14,11 +15,11 @@ public class AdministrativoService {
     public AdministrativoService(AdministrativoRepository administrativoRepository) {
         this.administrativoRepository = administrativoRepository;
     }
-    public List <AdministrativoModel>obtenerAdministartivo(){return administrativoRepository.findAll();}
+    public List <AdministrativoModel>obtenerAdministartivo(){
+        return administrativoRepository.findAll();}
 
-    public AdministrativoModel obtenerAdministrativoXid(int id) {
-        return administrativoRepository.findById((long) id)
-                .orElse(null);
+    public AdministrativoModel obtenerAdministrativoXid(int id){
+        return  administrativoRepository.findById((long) id).orElse(null);
     }
 
     public  void guardarAdministrativos(AdministrativoModel administrativoModel){

@@ -12,11 +12,12 @@ import java.util.List;
 @Service
 public class DetalleService {
     private final DetalleRepository detalleRepository;
-
     public DetalleService(DetalleRepository detalleRepository) {
         this.detalleRepository = detalleRepository;
     }
-    public List <DetalleModel>obtenerDetalle(){return detalleRepository.findAll();}
+
+    public List <DetalleModel>obtenerDetalle(){
+        return detalleRepository.findAll();}
 
     public DetalleModel obtenerDetalleXid(int id){
         return  detalleRepository.findById(id).orElse(null);

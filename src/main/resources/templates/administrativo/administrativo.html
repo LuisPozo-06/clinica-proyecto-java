@@ -42,8 +42,8 @@
             <form th:action="@{/administrativos/guardar}" method="post">
                 <div class="row mb-3">
                     <div class="col-md-6">
-                        <label for="idAdministrativo" class="form-label">ID Administrativo</label>
-                        <input type="text" class="form-control" id="idAdministrativo" name="idAdministrativo" readonly>
+                        <label for="idadministrativo" class="form-label">ID Administrativo</label>
+                        <input type="text" class="form-control" id="idAdministrativo" name="idadministrativo" readonly>
                     </div>
                     <div class="col-md-6">
                         <label for="nombresApellidos" class="form-label">Nombres y Apellidos</label>
@@ -88,8 +88,8 @@
                 </thead>
                 <tbody>
                 <tr th:each="administrativo : ${administrativos}">
-                    <td th:text="${administrativo.idAdministrativo}"></td>
-                    <td th:text="${administrativo.nombresApellidos}"></td>
+                    <td th:text="${administrativo.idadministrativo}"></td>
+                    <td th:text="${administrativo.nombresapellidos}"></td>
                     <td th:text="${administrativo.cargo}"></td>
                     <td th:text="${administrativo.telefono}"></td>
                     <td th:text="${administrativo.correo}"></td>
