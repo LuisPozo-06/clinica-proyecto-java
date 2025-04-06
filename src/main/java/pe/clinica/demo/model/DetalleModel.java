@@ -7,55 +7,71 @@ import jakarta.persistence.*;
 public class DetalleModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer _ID_detalle;
+    private Integer iddetalle;
     @ManyToOne
-    @JoinColumn(name = "ID_Receta")
+    @JoinColumn(name = "idreceta")
     private RecetaMedicaModel receta;
     @ManyToOne
-    @JoinColumn(name = "ID_Medicamento")
+    @JoinColumn(name = "idmedicamento")
     private MedicamentoModel medicamento;
-    private Integer _Cantidad;
-    private Integer _Unidad;
-    private String _Instrucciones;
-    private String _Dosis;
+    private Integer cantidad;
+    private Integer unidad;
+    private String instrucciones;
+    private String dosis;
 
-    public Integer get_ID_detalle() {
-        return _ID_detalle;
+    public Integer getIddetalle() {
+        return iddetalle;
     }
 
-    public void set_ID_detalle(Integer _ID_detalle) {
-        this._ID_detalle = _ID_detalle;
+    public void setIddetalle(Integer iddetalle) {
+        this.iddetalle = iddetalle;
     }
 
-    public Integer get_Cantidad() {
-        return _Cantidad;
+    public RecetaMedicaModel getReceta() {
+        return receta;
     }
 
-    public void set_Cantidad(Integer _Cantidad) {
-        this._Cantidad = _Cantidad;
+    public void setReceta(RecetaMedicaModel receta) {
+        this.receta = receta;
     }
 
-    public Integer get_Unidad() {
-        return _Unidad;
+    public MedicamentoModel getMedicamento() {
+        return medicamento;
     }
 
-    public void set_Unidad(Integer _Unidad) {
-        this._Unidad = _Unidad;
+    public void setMedicamento(MedicamentoModel medicamento) {
+        this.medicamento = medicamento;
     }
 
-    public String get_Instrucciones() {
-        return _Instrucciones;
+    public Integer getCantidad() {
+        return cantidad;
     }
 
-    public void set_Instrucciones(String _Instrucciones) {
-        this._Instrucciones = _Instrucciones;
+    public void setCantidad(Integer cantidad) {
+        this.cantidad = cantidad;
     }
 
-    public String get_Dosis() {
-        return _Dosis;
+    public Integer getUnidad() {
+        return unidad;
     }
 
-    public void set_Dosis(String _Dosis) {
-        this._Dosis = _Dosis;
+    public void setUnidad(Integer unidad) {
+        this.unidad = unidad;
+    }
+
+    public String getInstrucciones() {
+        return instrucciones;
+    }
+
+    public void setInstrucciones(String instrucciones) {
+        this.instrucciones = instrucciones;
+    }
+
+    public String getDosis() {
+        return dosis;
+    }
+
+    public void setDosis(String dosis) {
+        this.dosis = dosis;
     }
 }

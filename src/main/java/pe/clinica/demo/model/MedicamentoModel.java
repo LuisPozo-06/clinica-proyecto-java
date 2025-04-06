@@ -9,42 +9,40 @@ public class MedicamentoModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int medicamentoId;
-    private String medicamentoNombre;
-    private String medicamentoDescripcion;
-    private String medicamentoTipo;
+    private Integer idmedicamento;
+    private String nombremedicamento;
+    private String tipo;
+    private String descripcion;
 
-
-
-    public int getMedicamentoId() {
-        return medicamentoId;
+    public Integer getIdmedicamento() {
+        return idmedicamento;
     }
 
-    public void setMedicamentoId(int medicamentoId) {
-        this.medicamentoId = medicamentoId;
+    public void setIdmedicamento(Integer idmedicamento) {
+        this.idmedicamento = idmedicamento;
     }
 
-    public String getMedicamentoNombre() {
-        return medicamentoNombre;
+    public String getNombremedicamento() {
+        return nombremedicamento;
     }
 
-    public void setMedicamentoNombre(String medicamentoNombre) {
-        this.medicamentoNombre = medicamentoNombre;
+    public void setNombremedicamento(String nombremedicamento) {
+        this.nombremedicamento = nombremedicamento;
     }
 
-    public String getMedicamentoDescripcion() {
-        return medicamentoDescripcion;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setMedicamentoDescripcion(String medicamentoDescripcion) {
-        this.medicamentoDescripcion = medicamentoDescripcion;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
-    public String getMedicamentoTipo() {
-        return medicamentoTipo;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setMedicamentoTipo(String medicamentoTipo) {
-        this.medicamentoTipo = medicamentoTipo;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 }

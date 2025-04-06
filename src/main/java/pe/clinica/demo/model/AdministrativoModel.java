@@ -9,26 +9,26 @@ public class AdministrativoModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idAdministrativo;
-    private String nombresApellidos;
+    private Integer idadministrativo;
+    private String nombresapellidos;
     private String cargo;
     private Integer telefono;
     private String correo;
 
-    public Integer getIdAdministrativo() {
-        return idAdministrativo;
+    public Integer getIdadministrativo() {
+        return idadministrativo;
     }
 
-    public void setIdAdministrativo(Integer idAdministrativo) {
-        this.idAdministrativo = idAdministrativo;
+    public void setIdadministrativo(Integer idadministrativo) {
+        this.idadministrativo = idadministrativo;
     }
 
-    public String getNombresApellidos() {
-        return nombresApellidos;
+    public String getNombresapellidos() {
+        return nombresapellidos;
     }
 
-    public void setNombresApellidos(String nombresApellidos) {
-        this.nombresApellidos = nombresApellidos;
+    public void setNombresapellidos(String nombresapellidos) {
+        this.nombresapellidos = nombresapellidos;
     }
 
     public String getCargo() {

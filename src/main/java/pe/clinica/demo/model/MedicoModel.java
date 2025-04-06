@@ -8,52 +8,60 @@ import jakarta.persistence.*;
 public class MedicoModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idMedico;
-    private int DniMedico;
+    private Integer idmedico;
+    private Integer dnimedico;
     @ManyToOne
-    @JoinColumn(name="ID_Especialidad")
+    @JoinColumn(name="idespecialidad")
     private EspecialidadModel especialidad;
-    private String nombreApellido;
-    private int telefonoMedico;
-    private String correoMedico;
+    private String nombresapellidos;
+    private Integer telefono;
+    private String correo;
 
-    public int getIdMedico() {
-        return idMedico;
+    public Integer getIdmedico() {
+        return idmedico;
     }
 
-    public void setIdMedico(int idMedico) {
-        this.idMedico = idMedico;
+    public void setIdmedico(Integer idmedico) {
+        this.idmedico = idmedico;
     }
 
-    public int getDniMedico() {
-        return DniMedico;
+    public Integer getDnimedico() {
+        return dnimedico;
     }
 
-    public void setDniMedico(int dniMedico) {
-        DniMedico = dniMedico;
+    public void setDnimedico(Integer dnimedico) {
+        this.dnimedico = dnimedico;
     }
 
-    public String getNombreApellido() {
-        return nombreApellido;
+    public EspecialidadModel getEspecialidad() {
+        return especialidad;
     }
 
-    public void setNombreApellido(String nombreApellido) {
-        this.nombreApellido = nombreApellido;
+    public void setEspecialidad(EspecialidadModel especialidad) {
+        this.especialidad = especialidad;
     }
 
-    public int getTelefonoMedico() {
-        return telefonoMedico;
+    public String getNombresapellidos() {
+        return nombresapellidos;
     }
 
-    public void setTelefonoMedico(int telefonoMedico) {
-        this.telefonoMedico = telefonoMedico;
+    public void setNombresapellidos(String nombresapellidos) {
+        this.nombresapellidos = nombresapellidos;
     }
 
-    public String getCorreoMedico() {
-        return correoMedico;
+    public Integer getTelefono() {
+        return telefono;
     }
 
-    public void setCorreoMedico(String correoMedico) {
-        this.correoMedico = correoMedico;
+    public void setTelefono(Integer telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
 }

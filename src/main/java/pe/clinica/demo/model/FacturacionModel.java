@@ -9,46 +9,15 @@ public class FacturacionModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idFacturacion;
+    private int idfacturacion;
     @ManyToOne
-    @JoinColumn(name = "ID_Paciente")
+    @JoinColumn(name = "idpaciente")
     private PacienteModel paciente;
     @ManyToOne
-    @JoinColumn(name = "ID_Administrativo")
+    @JoinColumn(name = "idadministrativo")
     private AdministrativoModel administrativo;
-    private String fechaFacturacion;
+    private String fechafacturacion;
     private double monto;
-    private String estadoPago;
+    private String estadopago;
 
-    public int getIdFacturacion() {
-        return idFacturacion;
-    }
-
-    public void setIdFacturacion(int idFacturacion) {
-        this.idFacturacion = idFacturacion;
-    }
-
-    public String getFechaFacturacion() {
-        return fechaFacturacion;
-    }
-
-    public void setFechaFacturacion(String fechaFacturacion) {
-        this.fechaFacturacion = fechaFacturacion;
-    }
-
-    public double getMonto() {
-        return monto;
-    }
-
-    public void setMonto(double monto) {
-        this.monto = monto;
-    }
-
-    public String getEstadoPago() {
-        return estadoPago;
-    }
-
-    public void setEstadoPago(String estadoPago) {
-        this.estadoPago = estadoPago;
-    }
 }

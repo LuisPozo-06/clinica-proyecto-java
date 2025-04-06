@@ -8,25 +8,24 @@ import jakarta.persistence.*;
 public class EspecialidadModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idEspecialidad;
-    private String nombreEspecialidad;
+    private Integer idespecialidad;
+    private String nombreespecialidad;
     private String descripcion;
 
-
-    public int getIdEspecialidad() {
-        return idEspecialidad;
+    public Integer getIdespecialidad() {
+        return idespecialidad;
     }
 
-    public void setIdEspecialidad(int idEspecialidad) {
-        this.idEspecialidad = idEspecialidad;
+    public void setIdespecialidad(Integer idespecialidad) {
+        this.idespecialidad = idespecialidad;
     }
 
-    public String getNombreEspecialidad() {
-        return nombreEspecialidad;
+    public String getNombreespecialidad() {
+        return nombreespecialidad;
     }
 
-    public void setNombreEspecialidad(String nombreEspecialidad) {
-        this.nombreEspecialidad = nombreEspecialidad;
+    public void setNombreespecialidad(String nombreespecialidad) {
+        this.nombreespecialidad = nombreespecialidad;
     }
 
     public String getDescripcion() {

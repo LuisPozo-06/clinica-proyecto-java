@@ -8,20 +8,28 @@ import jakarta.persistence.*;
 public class Historia_medicaModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idHistoria;
+    private Integer idhistoria;
     @ManyToOne
-    @JoinColumn(name = "ID_Paciente")
+    @JoinColumn(name = "idpaciente")
     private PacienteModel paciente;
     private String diagnostico;
     private String fecha;
     private String tratamiento;
 
-    public int getIdHistoria() {
-        return idHistoria;
+    public Integer getIdhistoria() {
+        return idhistoria;
     }
 
-    public void setIdHistoria(int idHistoria) {
-        this.idHistoria = idHistoria;
+    public void setIdhistoria(Integer idhistoria) {
+        this.idhistoria = idhistoria;
+    }
+
+    public PacienteModel getPaciente() {
+        return paciente;
+    }
+
+    public void setPaciente(PacienteModel paciente) {
+        this.paciente = paciente;
     }
 
     public String getDiagnostico() {

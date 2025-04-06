@@ -9,46 +9,62 @@ import java.util.Date;
 public class CitaModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer _id_cita;
-    private String _estado;
-    private Date _hora;
-    private Date _fecha_cita;
+    private Integer idcita;
+    private String estado;
+    private Date hora;
+    private Date fechacita;
     @ManyToOne
-    @JoinColumn(name = "ID_Paciente")
+    @JoinColumn(name = "idpaciente")
     private PacienteModel paciente;
     @ManyToOne
-    @JoinColumn(name = "ID_Medico")
+    @JoinColumn(name = "idmedico")
     private MedicoModel medico;
 
-    public Integer get_id_cita() {
-        return _id_cita;
+    public Integer getIdcita() {
+        return idcita;
     }
 
-    public void set_id_cita(Integer _id_cita) {
-        this._id_cita = _id_cita;
+    public void setIdcita(Integer idcita) {
+        this.idcita = idcita;
     }
 
-    public String get_estado() {
-        return _estado;
+    public String getEstado() {
+        return estado;
     }
 
-    public void set_estado(String _estado) {
-        this._estado = _estado;
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
-    public Date get_hora() {
-        return _hora;
+    public Date getHora() {
+        return hora;
     }
 
-    public void set_hora(Date _hora) {
-        this._hora = _hora;
+    public void setHora(Date hora) {
+        this.hora = hora;
     }
 
-    public Date get_fecha_cita() {
-        return _fecha_cita;
+    public Date getFechacita() {
+        return fechacita;
     }
 
-    public void set_fecha_cita(Date _fecha_cita) {
-        this._fecha_cita = _fecha_cita;
+    public void setFechacita(Date fechacita) {
+        this.fechacita = fechacita;
+    }
+
+    public PacienteModel getPaciente() {
+        return paciente;
+    }
+
+    public void setPaciente(PacienteModel paciente) {
+        this.paciente = paciente;
+    }
+
+    public MedicoModel getMedico() {
+        return medico;
+    }
+
+    public void setMedico(MedicoModel medico) {
+        this.medico = medico;
     }
 }

@@ -6,63 +6,61 @@ import java.util.Date;
 @Entity
 @Table(name = "paciente")
 
-public class PacienteModel {
+public class    PacienteModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idPaciente;
-    private int DniPaciente;
-    private String NombrePaciente;
-    private Date FechaPaciente;
-    private int telefonoPaciente;
-    private String correoPaciente;
+    private Integer idpaciente;
+    private Integer dnipaciente;
+    private String nombresapellidos;
+    private Date fechanacimiento;
+    private Integer telefono;
+    private String correo;
 
-
-
-    public int getIdPaciente() {
-        return idPaciente;
+    public Integer getIdpaciente() {
+        return idpaciente;
     }
 
-    public void setIdPaciente(int idPaciente) {
-        this.idPaciente = idPaciente;
+    public void setIdpaciente(Integer idpaciente) {
+        this.idpaciente = idpaciente;
     }
 
-    public int getDniPaciente() {
-        return DniPaciente;
+    public Integer getDnipaciente() {
+        return dnipaciente;
     }
 
-    public void setDniPaciente(int dniPaciente) {
-        DniPaciente = dniPaciente;
+    public void setDnipaciente(Integer dnipaciente) {
+        this.dnipaciente = dnipaciente;
     }
 
-    public String getNombrePaciente() {
-        return NombrePaciente;
+    public String getNombresapellidos() {
+        return nombresapellidos;
     }
 
-    public void setNombrePaciente(String nombrePaciente) {
-        NombrePaciente = nombrePaciente;
+    public void setNombresapellidos(String nombresapellidos) {
+        this.nombresapellidos = nombresapellidos;
     }
 
-    public Date getFechaPaciente() {
-        return FechaPaciente;
+    public Date getFechanacimiento() {
+        return fechanacimiento;
     }
 
-    public void setFechaPaciente(Date fechaPaciente) {
-        FechaPaciente = fechaPaciente;
+    public void setFechanacimiento(Date fechanacimiento) {
+        this.fechanacimiento = fechanacimiento;
     }
 
-    public int getTelefonoPaciente() {
-        return telefonoPaciente;
+    public Integer getTelefono() {
+        return telefono;
     }
 
-    public void setTelefonoPaciente(int telefonoPaciente) {
-        this.telefonoPaciente = telefonoPaciente;
+    public void setTelefono(Integer telefono) {
+        this.telefono = telefono;
     }
 
-    public String getCorreoPaciente() {
-        return correoPaciente;
+    public String getCorreo() {
+        return correo;
     }
 
-    public void setCorreoPaciente(String correoPaciente) {
-        this.correoPaciente = correoPaciente;
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
 }
