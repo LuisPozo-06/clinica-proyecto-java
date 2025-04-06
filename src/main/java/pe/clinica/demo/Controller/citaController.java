@@ -19,7 +19,7 @@ public class citaController {
     public String index(Model model){
         model.addAttribute("citas",
                citaService.obtenerCitas());
-        return "cita/index";
+        return "cita/cita";
     }
 
     @GetMapping("/create")
@@ -42,6 +42,11 @@ public class citaController {
     public String save(@ModelAttribute("cita")
                       CitaModel citaModel){
         citaService.guardarCita(citaModel);
+        return "redirect:/cita";
+    }
+    @PostMapping("/delete/{id}")
+    public String deleteCita(@PathVariable("id") Long id) {
+        citaService.eliminarCita(Math.toIntExact(id));
         return "redirect:/cita";
     }
 

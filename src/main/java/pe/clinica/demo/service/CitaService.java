@@ -23,5 +23,8 @@ public class CitaService {
     public  void guardarCita(CitaModel citaModel){
         citaRepository.save(citaModel);
     }
+    public void eliminarCita(int id) {
+        citaRepository.deleteById((int) id);
+    }
 
 }

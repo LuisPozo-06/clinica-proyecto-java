@@ -25,7 +25,7 @@ public class AdministrativoService {
     public  void guardarAdministrativos(AdministrativoModel administrativoModel){
         administrativoRepository.save(administrativoModel);
     }
-
+    // Método para eliminar un administrativo
     public void eliminarAdministrativo(int id) {
         administrativoRepository.deleteById((long) id);
     }
