@@ -25,6 +25,11 @@ public class DetalleService {
     public  void guardarDetalle(DetalleModel detalleModel){
         detalleRepository.save(detalleModel);
     }
+    public void eliminarDetalle(int id) {
+        detalleRepository.deleteById((int) id);
+
+    }
+
 }
 
 

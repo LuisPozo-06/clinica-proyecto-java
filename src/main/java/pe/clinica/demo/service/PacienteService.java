@@ -33,4 +33,7 @@ public class PacienteService {
     public void eliminarPaciente(int id) {
         pacienteRepository.deleteById((Integer) id);
     }
+
+
+
 }

@@ -25,6 +25,8 @@ public class CitaService {
     }
     public void eliminarCita(int id) {
         citaRepository.deleteById((int) id);
+
     }
+
 
 }

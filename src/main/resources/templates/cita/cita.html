@@ -45,27 +45,34 @@
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label for="estado" class="form-label">Estado</label>
-                        <input type="text" class="form-control" id="estado" name="estado"
-                               th:value="${cita != null ? cita.estado : ''}" required>
+                        <select class="form-select" id="estado" name="estado" required>
+                            <option value="">-- Seleccione estado --</option>
+                            <option value="Confirmada" th:selected="${cita != null and cita.estado == 'Confirmada'}">Confirmada</option>
+                            <option value="Pendiente" th:selected="${cita != null and cita.estado == 'Pendiente'}">Pendiente</option>
+                            <option value="Cancelada" th:selected="${cita != null and cita.estado == 'Cancelada'}">Cancelada</option>
+                        </select>
                     </div>
                     <div class="col-md-6">
                         <label for="hora" class="form-label">Hora</label>
                         <input type="time" class="form-control" id="hora" name="hora"
-                               th:value="${cita != null ? cita.hora : ''}" required>
+                               th:value="${cita != null ? #dates.format(cita.hora, 'HH:mm') : ''}" required>
                     </div>
                 </div>
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label for="fechacita" class="form-label">Fecha de la Cita</label>
                         <input type="date" class="form-control" id="fechacita" name="fechacita"
-                               th:value="${cita != null ? cita.fechacita : ''}" required>
+                               th:value="${cita != null ? #dates.format(cita.fechacita, 'yyyy-MM-dd') : ''}" required>
                     </div>
                     <div class="col-md-6">
                         <label for="paciente" class="form-label">Paciente</label>
                         <select class="form-select" id="paciente" name="paciente" required>
+                            <option value="">-- Seleccione un paciente --</option>
                             <option th:each="paciente : ${pacientes}"
                                     th:value="${paciente.idpaciente}"
-                                    th:text="${paciente.nombresapellidos}"></option>
+                                    th:text="${paciente.nombresapellidos}"
+                                    th:selected="${cita != null and cita.paciente.idpaciente == paciente.idpaciente}">
+                            </option>
                         </select>
                     </div>
                 </div>
@@ -73,9 +80,12 @@
                     <div class="col-md-6">
                         <label for="medico" class="form-label">Médico</label>
                         <select class="form-select" id="medico" name="medico" required>
+                            <option value="">-- Seleccione un médico --</option>
                             <option th:each="medico : ${medicos}"
                                     th:value="${medico.idmedico}"
-                                    th:text="${medico.nombresapellidos}"></option>
+                                    th:text="${medico.nombresapellidos}"
+                                    th:selected="${cita != null and cita.medico.idmedico == medico.idmedico}">
+                            </option>
                         </select>
                     </div>
                 </div>
@@ -107,17 +117,15 @@
                 <tr th:each="cita : ${citas}">
                     <td th:text="${cita.idcita}"></td>
                     <td th:text="${cita.estado}"></td>
-                    <td th:text="${cita.hora}"></td>
-                    <td th:text="${cita.fechacita}"></td>
+                    <td th:text="${#dates.format(cita.hora, 'HH:mm')}"></td>
+                    <td th:text="${#dates.format(cita.fechacita, 'yyyy-MM-dd')}"></td>
                     <td th:text="${cita.paciente.nombresapellidos}"></td>
                     <td th:text="${cita.medico.nombresapellidos}"></td>
                     <td>
-                        <!-- Editar -->
-
-                        <!-- Eliminar -->
+                        <a th:href="@{/cita/edit/{id}(id=${cita.idcita})}" class="btn btn-warning btn-sm">Editar</a>
                         <form th:action="@{/cita/delete/{id}(id=${cita.idcita})}" method="post" style="display:inline;">
                             <input type="hidden" name="_method" value="delete"/>
-                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                            <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
                         </form>
                     </td>
                 </tr>
@@ -131,3 +139,4 @@
 
 </body>
 </html>
+

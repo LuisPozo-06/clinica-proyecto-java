@@ -15,12 +15,15 @@ public class FacturacionService {
     }
     public List<FacturacionModel>obtenerFacturacion(){
         return facturacionRepository.findAll();}
+
     public FacturacionModel obtenerFacturacionXid(int id){
         return  facturacionRepository.findById(id).orElse(null);
     }
+
     public  void guardarFacturacion(FacturacionModel model){
         facturacionRepository.save(model);
     }
+
     public void eliminarFacturacion(int id) {
         facturacionRepository.deleteById((int) id);
     }
