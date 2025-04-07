@@ -2,34 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clínica - Médicos</title>
+    <title>Médicos</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <div class="container">
-        <a class="navbar-brand" href="#">Clínica Salud+</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="/home">Inicio</a></li>
-                <li class="nav-item"><a class="nav-link" href="/paciente">Pacientes</a></li>
-                <li class="nav-item"><a class="nav-link" href="/cita">Citas</a></li>
-                <li class="nav-item"><a class="nav-link" href="/medico">Médicos</a></li>
-                <li class="nav-item"><a class="nav-link" href="/facturacion">Facturación</a></li>
-                <li class="nav-item"><a class="nav-link" href="/administrativo">Administrativo</a></li>
-                <li class="nav-item"><a class="nav-link" href="/cita">Citas salud</a></li>
-                <li class="nav-item"><a class="nav-link" href="/detalle">Detalles</a></li>
-                <li class="nav-item"><a class="nav-link" href="/especialidad"> Especialidad</a></li>
-                <li class="nav-item"><a class="nav-link" href="/recetaMedica"> Receta Medica</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<!-- Mismo navbar -->
 
 <div class="container mt-5">
     <h2 class="text-center text-primary">Gestión de Médicos</h2>
@@ -37,25 +15,32 @@
     <div class="card shadow-sm">
         <div class="card-header bg-primary text-white text-center">Registrar Médico</div>
         <div class="card-body">
-            <form th:action="@{/medicos/guardar}" method="post">
+            <form th:action="@{/medico/save}" th:object="${medico}" method="post">
                 <div class="row mb-3">
                     <div class="col-md-6">
-                        <label for="idMedico" class="form-label">ID Médico</label>
-                        <input type="text" class="form-control" id="idMedico" name="idMedico" readonly>
+                        <label for="dnimedico" class="form-label">DNI</label>
+                        <!-- Usa th:field para la vinculación -->
+                        <input type="number" class="form-control" id="dnimedico"
+                               th:field="*{dnimedico}"
+                               name="dnimedico" required>
                     </div>
                     <div class="col-md-6">
-                        <label for="nombre" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="nombre" name="nombre" required>
+                        <label for="nombresapellidos" class="form-label">Nombres y Apellidos</label>
+                        <input type="text" class="form-control" id="nombresapellidos" name="nombresapellidos" required>
                     </div>
                 </div>
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label for="especialidad" class="form-label">Especialidad</label>
-                        <input type="text" class="form-control" id="especialidad" name="especialidad" required>
+                        <select class="form-select" id="especialidad" name="especialidad" th:field="*{especialidad}">
+                            <option th:each="especialidad : ${especialidades}"
+                                    th:value="${especialidad.idespecialidad}"
+                                    th:text="${especialidad.nombreespecialidad}"></option>
+                        </select>
                     </div>
                     <div class="col-md-6">
                         <label for="telefono" class="form-label">Teléfono</label>
-                        <input type="number" class="form-control" id="telefono" name="telefono" required>
+                        <input type="tel" class="form-control" id="telefono" name="telefono" required>
                     </div>
                 </div>
                 <div class="mb-3">
@@ -71,25 +56,32 @@
     </div>
 
     <div class="card mt-4 shadow-sm">
-        <div class="card-header bg-primary text-white text-center">Listado de Médicos</div>
+        <div class="card-header bg-primary text-white text-center">Médicos Registrados</div>
         <div class="card-body">
             <table class="table table-bordered text-center">
                 <thead>
                 <tr>
                     <th>ID</th>
+                    <th>DNI</th>
                     <th>Nombre</th>
                     <th>Especialidad</th>
                     <th>Teléfono</th>
-                    <th>Correo</th>
+                    <th>Acciones</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="medico : ${medicos}">
-                    <td th:text="${medico.idMedico}"></td>
-                    <td th:text="${medico.nombre}"></td>
-                    <td th:text="${medico.especialidad}"></td>
+                    <td th:text="${medico.idmedico}"></td>
+                    <td th:text="${medico.dnimedico}"></td>
+                    <td th:text="${medico.nombresapellidos}"></td>
+                    <td th:text="${medico.especialidad.nombreespecialidad}"></td>
                     <td th:text="${medico.telefono}"></td>
-                    <td th:text="${medico.correo}"></td>
+                    <td>
+                        <a th:href="@{/medico/edit/{id}(id=${medico.idmedico})}" class="btn btn-warning">Editar</a>
+                        <form th:action="@{/medico/delete/{id}(id=${medico.idmedico})}" method="post" style="display:inline;">
+                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                        </form>
+                    </td>
                 </tr>
                 </tbody>
             </table>
@@ -98,6 +90,5 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
 </body>
 </html>

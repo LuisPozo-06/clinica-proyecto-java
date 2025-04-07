@@ -25,4 +25,7 @@ public class EspecialidadService {
 
         especialidadRepository.save(especialidadModel);
     }
+    public List<EspecialidadModel> obtenerEspecialidades() {
+        return especialidadRepository.findAll();
+    }
 }
