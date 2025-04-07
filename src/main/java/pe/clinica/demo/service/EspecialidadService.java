@@ -25,4 +25,5 @@ public class EspecialidadService {
 
         especialidadRepository.save(especialidadModel);
     }
+
 }

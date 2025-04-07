@@ -24,7 +24,7 @@ public class MedicoService {
     }
 
     public MedicoModel guardarMedico(MedicoModel medicoModel) {
-        // Validación de DNI
+        // Validación básica del DNI
         if(medicoModel.getDnimedico() == null || medicoModel.getDnimedico().toString().length() != 8) {
             throw new IllegalArgumentException("El DNI debe tener 8 dígitos");
         }
