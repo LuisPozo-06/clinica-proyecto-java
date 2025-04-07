@@ -1,25 +1,35 @@
 package pe.clinica.demo.model;
 
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
-@Entity
-@Table (name = "cita")
 
+@Entity
+@Table(name = "cita")
 public class CitaModel {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idcita;
+
     private String estado;
+
+    @DateTimeFormat(pattern = "HH:mm") // ← Formato correcto para hora
     private Date hora;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd") // ← Formato correcto para fecha
     private Date fechacita;
+
     @ManyToOne
     @JoinColumn(name = "idpaciente")
     private PacienteModel paciente;
+
     @ManyToOne
     @JoinColumn(name = "idmedico")
     private MedicoModel medico;
 
+    // Getters y Setters
     public Integer getIdcita() {
         return idcita;
     }

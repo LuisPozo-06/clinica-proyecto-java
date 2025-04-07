@@ -2,13 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clínica - Detalle de Recetas</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <title>Detalle - Registrar</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 
-
+<!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container">
         <a class="navbar-brand" href="#">Clínica Salud+</a>
@@ -23,58 +22,65 @@
                 <li class="nav-item"><a class="nav-link" href="/medico">Médicos</a></li>
                 <li class="nav-item"><a class="nav-link" href="/facturacion">Facturación</a></li>
                 <li class="nav-item"><a class="nav-link" href="/administrativo">Administrativo</a></li>
-                <li class="nav-item"><a class="nav-link" href="/cita">Citas salud</a></li>
-                <li class="nav-item"><a class="nav-link" href="/detalle">Detalles</a></li>
-                <li class="nav-item"><a class="nav-link" href="/especialidad"> Especialidad</a></li>
-                <li class="nav-item"><a class="nav-link" href="/recetaMedica"> Receta Medica</a></li>
+                <li class="nav-item"><a class="nav-link active" href="/detalle">Detalles</a></li>
+                <li class="nav-item"><a class="nav-link" href="/especialidad">Especialidad</a></li>
+                <li class="nav-item"><a class="nav-link" href="/recetaMedica">Receta Médica</a></li>
             </ul>
         </div>
     </div>
 </nav>
 
-
+<!-- Contenido principal -->
 <div class="container mt-5">
-    <h2 class="text-center text-primary">Gestión de Detalles de Receta</h2>
+    <h2 class="text-center text-primary mb-4">Registrar Detalle</h2>
 
-
-    <div class="card shadow-sm">
-        <div class="card-header bg-primary text-white text-center">Registrar Detalle</div>
+    <!-- Formulario para registrar un nuevo detalle -->
+    <div class="card shadow-sm mb-4">
+        <div class="card-header bg-primary text-white">Registrar Detalle</div>
         <div class="card-body">
-            <form th:action="@{/detalles/guardar}" method="post">
-                <div class="row mb-3">
-                    <div class="col-md-6">
-                        <label for="idDetalle" class="form-label">ID Detalle</label>
-                        <input type="text" class="form-control" id="idDetalle" name="idDetalle" readonly>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="idReceta" class="form-label">ID Receta</label>
-                        <input type="text" class="form-control" id="idReceta" name="idReceta" required>
-                    </div>
+            <form th:action="@{/detalle/save}" method="post" th:object="${detalle}">
+
+                <!-- Seleccionar Receta -->
+                <div class="mb-3">
+                    <label for="receta" class="form-label">Receta Médica</label>
+                    <select th:field="*{receta.id}" class="form-control" required>
+                        <option value="" th:text="'Seleccione una receta'">Seleccione una receta</option>
+                        <option th:each="receta : ${recetas}"
+                                th:value="${receta.id}"
+                                th:text="${receta.nombre}"></option>
+                    </select>
                 </div>
-                <div class="row mb-3">
-                    <div class="col-md-6">
-                        <label for="idMedicamento" class="form-label">ID Medicamento</label>
-                        <input type="text" class="form-control" id="idMedicamento" name="idMedicamento" required>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="cantidad" class="form-label">Cantidad</label>
-                        <input type="number" class="form-control" id="cantidad" name="cantidad" required>
-                    </div>
+
+                <!-- Medicamento -->
+                <div class="mb-3">
+                    <label for="medicamento" class="form-label">Medicamento</label>
+                    <input type="text" id="medicamento" class="form-control" th:field="*{medicamento}" required>
                 </div>
-                <div class="row mb-3">
-                    <div class="col-md-6">
-                        <label for="unidad" class="form-label">Unidad</label>
-                        <input type="number" class="form-control" id="unidad" name="unidad" required>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="dosis" class="form-label">Dosis</label>
-                        <input type="text" class="form-control" id="dosis" name="dosis" required>
-                    </div>
+
+                <!-- Cantidad -->
+                <div class="mb-3">
+                    <label for="cantidad" class="form-label">Cantidad</label>
+                    <input type="number" id="cantidad" class="form-control" th:field="*{cantidad}" required>
                 </div>
+
+                <!-- Unidad -->
+                <div class="mb-3">
+                    <label for="unidad" class="form-label">Unidad</label>
+                    <input type="number" id="unidad" class="form-control" th:field="*{unidad}" required>
+                </div>
+
+                <!-- Instrucciones -->
                 <div class="mb-3">
                     <label for="instrucciones" class="form-label">Instrucciones</label>
-                    <textarea class="form-control" id="instrucciones" name="instrucciones" rows="3" required></textarea>
+                    <input type="text" id="instrucciones" class="form-control" th:field="*{instrucciones}" required>
                 </div>
+
+                <!-- Dosis -->
+                <div class="mb-3">
+                    <label for="dosis" class="form-label">Dosis</label>
+                    <input type="text" id="dosis" class="form-control" th:field="*{dosis}" required>
+                </div>
+
                 <div class="d-flex justify-content-between">
                     <button type="submit" class="btn btn-success">Guardar</button>
                     <button type="reset" class="btn btn-secondary">Limpiar</button>
@@ -82,40 +88,9 @@
             </form>
         </div>
     </div>
-
-    <div class="card mt-4 shadow-sm">
-        <div class="card-header bg-primary text-white text-center">Listado de Detalles</div>
-        <div class="card-body">
-            <table class="table table-bordered text-center">
-                <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>ID Receta</th>
-                    <th>ID Medicamento</th>
-                    <th>Cantidad</th>
-                    <th>Unidad</th>
-                    <th>Dosis</th>
-                    <th>Instrucciones</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="detalle : ${detalles}">
-                    <td th:text="${detalle.idDetalle}"></td>
-                    <td th:text="${detalle.idReceta}"></td>
-                    <td th:text="${detalle.idMedicamento}"></td>
-                    <td th:text="${detalle.cantidad}"></td>
-                    <td th:text="${detalle.unidad}"></td>
-                    <td th:text="${detalle.dosis}"></td>
-                    <td th:text="${detalle.instrucciones}"></td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
 </div>
 
-
+<!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-

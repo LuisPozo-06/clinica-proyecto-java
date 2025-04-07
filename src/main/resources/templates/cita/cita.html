@@ -75,13 +75,11 @@
                             </option>
                         </select>
                     </div>
-                </div>
-                <div class="row mb-3">
                     <div class="col-md-6">
-                        <label for="medico" class="form-label">Médico</label>
+                        <label for="medico" class="form-label">Medico</label>
                         <select class="form-select" id="medico" name="medico" required>
-                            <option value="">-- Seleccione un médico --</option>
-                            <option th:each="medico : ${medicos}"
+                            <option value="">-- Seleccione un paciente --</option>
+                            <option th:each="medico : ${medico}"
                                     th:value="${medico.idmedico}"
                                     th:text="${medico.nombresapellidos}"
                                     th:selected="${cita != null and cita.medico.idmedico == medico.idmedico}">
@@ -89,6 +87,7 @@
                         </select>
                     </div>
                 </div>
+
                 <div class="d-flex justify-content-between">
                     <button type="submit" class="btn btn-success">Guardar</button>
                     <button type="reset" class="btn btn-secondary">Limpiar</button>

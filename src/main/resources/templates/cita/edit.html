@@ -9,7 +9,7 @@
 <div class="container mt-5">
   <h2 class="text-center mb-4">Editar Cita Médica</h2>
 
-  <form th:action="@{/citas/save}" method="post">
+  <form th:action="@{/cita/save}" method="post"> <!-- Corrección aquí -->
     <input type="hidden" name="idcita" th:value="${cita.idcita}">
 
     <!-- Combobox de Pacientes -->
@@ -62,7 +62,7 @@
              th:value="${#dates.format(cita.hora, 'HH:mm')}">
     </div>
 
-    <!-- Botones de acción CORREGIDOS -->
+    <!-- Botones -->
     <button type="submit" class="btn btn-primary">Guardar</button>
     <a th:href="@{/cita}" class="btn btn-secondary">Cancelar</a>
   </form>

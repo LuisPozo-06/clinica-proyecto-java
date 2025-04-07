@@ -19,14 +19,14 @@ public class detalleController {
     public String index(Model model){
         model.addAttribute("detalle",
                 detalleService.obtenerDetalle());
-        return "detalle/index";
+        return "detalle/detalle";
     }
 
     @GetMapping("/create")
     public String create(Model model){
         model.addAttribute("detalle",
                 new DetalleModel());
-        return "category/detalle";
+        return "detalle/detalle";
     }
 
     //localhost:8080/category/edit/1
@@ -39,9 +39,14 @@ public class detalleController {
     }
 
     @PostMapping("/save")
-    public String save(@ModelAttribute("detalle")
-                       DetalleModel detalleModel){
+    public String save(@ModelAttribute("detalle") DetalleModel detalleModel) {
         detalleService.guardarDetalle(detalleModel);
         return "redirect:/detalle";
     }
+    @PostMapping("/delete/{id}")
+    public String deleteDetalle(@PathVariable("id") Long id) {
+        detalleService.eliminarDetalle(Math.toIntExact(id));
+        return "redirect:/detalle";
+    }
+
 }

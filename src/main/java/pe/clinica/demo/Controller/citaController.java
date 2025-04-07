@@ -6,8 +6,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pe.clinica.demo.model.CitaModel;
 import pe.clinica.demo.model.FacturacionModel;
+import pe.clinica.demo.model.MedicoModel;
 import pe.clinica.demo.model.PacienteModel;
 import pe.clinica.demo.service.CitaService;
+import pe.clinica.demo.service.MedicoService;
 import pe.clinica.demo.service.PacienteService;
 
 @Controller
@@ -17,11 +19,12 @@ public class citaController {
     private  final CitaService citaService;
     @Autowired
     private final PacienteService pacienteService;
+    private final MedicoService medicoService;
 
-    public citaController(CitaService citaService, PacienteService pacienteService) {
+    public citaController(CitaService citaService, PacienteService pacienteService, MedicoService medicoService) {
         this.citaService = citaService;
         this.pacienteService = pacienteService;
-
+        this.medicoService = medicoService;
     }
     @GetMapping
 
@@ -30,6 +33,8 @@ public class citaController {
                citaService.obtenerCitas());
         model.addAttribute("pacientes",
                 pacienteService.obtenerPacientes());
+        model.addAttribute("medico",
+                medicoService.obtenerMedicos());
         return "cita/cita";
     }
 
@@ -51,23 +56,29 @@ public class citaController {
 
         model.addAttribute("cita", citaModel);
         model.addAttribute("pacientes", pacienteService.obtenerPacientes());
-
+        model.addAttribute("medicos", medicoService.obtenerMedicos());
         return "cita/edit";
     }
 
 
     @PostMapping("/save")
-    public String save(@ModelAttribute("cita")
-                      CitaModel citaModel){
-        citaService.guardarCita(citaModel);
+    public String save(@ModelAttribute("cita") CitaModel citaModel) {
         Integer idPaciente = citaModel.getPaciente() != null ? citaModel.getPaciente().getIdpaciente() : null;
         if (idPaciente != null) {
             PacienteModel paciente = pacienteService.obtenerPacienteXid(idPaciente);
             citaModel.setPaciente(paciente);
         }
 
+        Integer idMedico = citaModel.getMedico() != null ? citaModel.getMedico().getIdmedico() : null;
+        if (idMedico != null) {
+            MedicoModel medico = medicoService.obtenerMedicoXid(idMedico);
+            citaModel.setMedico(medico);
+        }
+
+        citaService.guardarCita(citaModel);
         return "redirect:/cita";
     }
+
     @PostMapping("/delete/{id}")
     public String deleteCita(@PathVariable("id") Long id) {
         citaService.eliminarCita(Math.toIntExact(id));

@@ -23,10 +23,11 @@ public class AdministrativoController {
 
     @GetMapping
     public String index(Model model) {
-        model.addAttribute("administrativos",
-               administrativoService.obtenerAdministartivo());
+        model.addAttribute("administrativos", administrativoService.obtenerAdministartivo());
+        model.addAttribute("administrativo", new AdministrativoModel()); // <- esto faltaba
         return "administrativo/administrativo";
     }
+
     @GetMapping("/create")
     public String create(Model model){
         model.addAttribute("administrativo",
