@@ -38,31 +38,37 @@
     <div class="card shadow-sm">
         <div class="card-header bg-primary text-white text-center">Información</div>
         <div class="card-body">
-            <form th:action="@{/facturacion/guardar}" method="post">
+            <form th:action="@{/facturacion/save}" method="post">
                 <div class="row mb-3">
                     <div class="col-md-6">
-                        <label for="facturaId" class="form-label">ID Facturación</label>
-                        <input type="text" class="form-control" id="facturaId" name="facturaId" readonly>
+                        <label for="idfacturacion" class="form-label">ID Facturación</label>
+                        <input type="text" class="form-control" id="idfacturacion" name="idfacturacion" readonly>
                     </div>
                     <div class="col-md-6">
                         <label for="paciente" class="form-label">A nombre</label>
-                        <select class="form-select" id="paciente" name="paciente" required>
+                        <select class="form-select" id="paciente" name="paciente.idpaciente" required>
                             <option value="">Seleccione un paciente</option>
-                            <option th:each="paciente : ${pacientes}" th:value="${paciente.id}" th:text="${paciente.nombre}"></option>
+                            <option th:each="paciente : ${pacientes}"
+                                    th:value="${paciente.idpaciente}"
+                                    th:text="${paciente.nombresapellidos}">
+                            </option>
                         </select>
                     </div>
                 </div>
                 <div class="row mb-3">
                     <div class="col-md-6">
-                        <label for="encargado" class="form-label">Encargado</label>
-                        <select class="form-select" id="encargado" name="encargado" required>
+                        <label for="administrativo" class="form-label">Encargado</label>
+                        <select class="form-select" id="administrativo" name="administrativo.idadministrativo" required>
                             <option value="">Seleccione un encargado</option>
-                            <option th:each="encargado : ${encargados}" th:value="${encargado.id}" th:text="${encargado.nombre}"></option>
+                            <option th:each="administrativo : ${administrativos}"
+                                    th:value="${administrativo.idadministrativo}"
+                                    th:text="${administrativo.nombresapellidos}">
+                            </option>
                         </select>
                     </div>
                     <div class="col-md-6">
-                        <label for="fecha" class="form-label">Fecha</label>
-                        <input type="date" class="form-control" id="fecha" name="fecha" required>
+                        <label for="fechafacturacion" class="form-label">Fecha</label>
+                        <input type="date" class="form-control" id="fechafacturacion" name="fechafacturacion" required>
                     </div>
                 </div>
                 <div class="row mb-3">
@@ -71,8 +77,8 @@
                         <input type="number" class="form-control" id="monto" name="monto" step="0.01" required>
                     </div>
                     <div class="col-md-6">
-                        <label for="estado" class="form-label">Estado de Pago</label>
-                        <select class="form-select" id="estado" name="estado" required>
+                        <label for="estadopago" class="form-label">Estado de Pago</label>
+                        <select class="form-select" id="estadopago" name="estadopago" required>
                             <option value="Pagado">Pagado</option>
                             <option value="Pendiente">Pendiente</option>
                         </select>
@@ -99,16 +105,32 @@
                     <th>Fecha</th>
                     <th>Monto</th>
                     <th>Estado</th>
+                    <th>Acciones</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="factura : ${facturas}">
-                    <td th:text="${factura.id}"></td>
-                    <td th:text="${factura.paciente.nombre}"></td>
-                    <td th:text="${factura.encargado.nombre}"></td>
-                    <td th:text="${factura.fecha}"></td>
+                    <td th:text="${factura.idfacturacion}"></td>
+                    <td th:text="${factura.paciente != null ? factura.paciente.nombresapellidos : 'Sin paciente'}"></td>
+                    <td th:text="${factura.administrativo != null ? factura.administrativo.nombresapellidos : 'Sin encargado'}"></td>
+                    <td th:text="${factura.fechafacturacion}"></td>
                     <td th:text="${factura.monto}"></td>
-                    <td th:text="${factura.estado}"></td>
+                    <td th:text="${factura.estadopago}"></td>
+                    <td>
+                        <!-- Botón Editar -->
+                        <a th:href="@{/facturacion/edit/} + ${factura.idfacturacion}"
+                           class="btn btn-warning btn-sm">Editar</a>
+
+                        <form th:action="@{/facturacion/delete/} + ${factura.idfacturacion}"
+                              method="post"
+                              style="display: inline-block;">
+                            <button type="submit"
+                                    class="btn btn-danger btn-sm"
+                                    onclick="return confirm('¿Estás seguro de eliminar esta factura?');">
+                                Eliminar
+                            </button>
+                        </form>
+                    </td>
                 </tr>
                 </tbody>
             </table>

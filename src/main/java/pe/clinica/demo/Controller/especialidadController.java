@@ -3,9 +3,7 @@ package pe.clinica.demo.Controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import pe.clinica.demo.model.DetalleModel;
 import pe.clinica.demo.model.EspecialidadModel;
-import pe.clinica.demo.service.DetalleService;
 import pe.clinica.demo.service.EspecialidadService;
 
 @Controller
