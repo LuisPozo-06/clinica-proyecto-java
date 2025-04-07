@@ -3,11 +3,10 @@ package pe.clinica.demo.Controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pe.clinica.demo.model.MedicoModel;
-import pe.clinica.demo.service.EspecialidadService;
 import pe.clinica.demo.service.MedicoService;
-
-import pe.clinica.demo.model.EspecialidadModel;
+import pe.clinica.demo.service.EspecialidadService;
 
 @Controller
 @RequestMapping("/medico")
@@ -23,47 +22,47 @@ public class MedicoController {
     }
 
     @GetMapping
-    public String index(Model model) {
+    public String listarMedicos(Model model) {
         model.addAttribute("medico", new MedicoModel());
         model.addAttribute("medicos", medicoService.obtenerMedicos());
         model.addAttribute("especialidades", especialidadService.obtenerEspecialidades());
-        return "medico/medico";
-    }
-
-    @GetMapping("/create")
-    public String create(Model model) {
-        model.addAttribute("medico", new MedicoModel());
-        model.addAttribute("especialidades", especialidadService.obtenerEspecialidades());
-        return "medico/create";
+        return "medico/list";
     }
 
     @GetMapping("/edit/{id}")
-    public String edit(Model model, @PathVariable int id) {
+    public String editarMedico(@PathVariable int id, Model model, RedirectAttributes redirectAttributes) {
         MedicoModel medico = medicoService.obtenerMedicoXid(id);
         if (medico == null) {
+            redirectAttributes.addFlashAttribute("error", "Médico no encontrado");
             return "redirect:/medico";
         }
         model.addAttribute("medico", medico);
         model.addAttribute("especialidades", especialidadService.obtenerEspecialidades());
-        return "medico/edit";
+        return "medico/list";
     }
 
     @PostMapping("/save")
-    public String save(@ModelAttribute("medico") MedicoModel medicoModel) {
-        // Asignar la especialidad completa desde el ID
-        if (medicoModel.getEspecialidad() != null && medicoModel.getEspecialidad().getIdespecialidad() != null) {
-            EspecialidadModel especialidad = especialidadService.obtenerEspecialidadXid(
-                    medicoModel.getEspecialidad().getIdespecialidad()
-            );
-            medicoModel.setEspecialidad(especialidad);
+    public String guardarMedico(@ModelAttribute("medico") MedicoModel medicoModel,
+                                RedirectAttributes redirectAttributes) {
+        try {
+            // Validación y lógica de guardado
+            medicoService.guardarMedico(medicoModel);
+            redirectAttributes.addFlashAttribute("success",
+                    medicoModel.getIdmedico() == null ? "Médico creado exitosamente" : "Médico actualizado exitosamente");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("error", "Error: " + e.getMessage());
         }
-        medicoService.guardarMedico(medicoModel);
         return "redirect:/medico";
     }
 
     @PostMapping("/delete/{id}")
-    public String delete(@PathVariable("id") Long id) {
-        medicoService.eliminarMedico(Math.toIntExact(id));
+    public String eliminarMedico(@PathVariable int id, RedirectAttributes redirectAttributes) {
+        try {
+            medicoService.eliminarMedico(id);
+            redirectAttributes.addFlashAttribute("success", "Médico eliminado correctamente");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("error", "Error al eliminar: " + e.getMessage());
+        }
         return "redirect:/medico";
     }
 }
