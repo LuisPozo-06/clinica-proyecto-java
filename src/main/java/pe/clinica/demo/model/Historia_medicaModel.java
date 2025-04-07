@@ -3,7 +3,7 @@ package pe.clinica.demo.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "historia_medica")
+@Table(name = "historiamedica")
 
 public class Historia_medicaModel {
     @Id
