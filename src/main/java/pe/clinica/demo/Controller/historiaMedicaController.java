@@ -9,12 +9,11 @@ import pe.clinica.demo.service.PacienteService;
 
 @Controller
 @RequestMapping("/historia")
-public class HistoriaMedicaController {
-
+public class historiaMedicaController {
     private final HistoriaMedicaService historiaMedicaService;
     private final PacienteService pacienteService;
 
-    public HistoriaMedicaController(HistoriaMedicaService historiaMedicaService, PacienteService pacienteService) {
+    public historiaMedicaController(HistoriaMedicaService historiaMedicaService, PacienteService pacienteService) {
         this.historiaMedicaService = historiaMedicaService;
         this.pacienteService = pacienteService;
     }
