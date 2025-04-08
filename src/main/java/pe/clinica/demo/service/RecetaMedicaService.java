@@ -1,12 +1,12 @@
 package pe.clinica.demo.service;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pe.clinica.demo.model.RecetaMedicaModel;
 import pe.clinica.demo.repository.RecetaMedicaRepository;
 
 import java.util.List;
-
 @Service
 public class RecetaMedicaService {
     private final RecetaMedicaRepository recetaMedicaRepository;

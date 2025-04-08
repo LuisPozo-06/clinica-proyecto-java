@@ -2,6 +2,7 @@ package pe.clinica.demo.model;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 @Entity
 @Table(name = "recetamedica")
@@ -16,7 +17,7 @@ public class RecetaMedicaModel {
     @ManyToOne
     @JoinColumn(name = "idmedico")
     private MedicoModel medico;
-    private Date fechareceta;
+    private LocalDate fechareceta;
 
     public int getIdreceta() {
         return idreceta;
@@ -42,11 +43,11 @@ public class RecetaMedicaModel {
         this.medico = medico;
     }
 
-    public Date getFechareceta() {
+    public LocalDate getFechareceta() {
         return fechareceta;
     }
 
-    public void setFechareceta(Date fechareceta) {
+    public void setFechareceta(LocalDate fechareceta) {
         this.fechareceta = fechareceta;
     }
 }

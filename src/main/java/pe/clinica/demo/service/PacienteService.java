@@ -7,7 +7,6 @@ import pe.clinica.demo.model.PacienteModel;
 import pe.clinica.demo.repository.PacienteRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 
 @Service
