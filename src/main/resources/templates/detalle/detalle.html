@@ -107,6 +107,9 @@
                     <th>Receta</th>
                     <th>Medicamento</th>
                     <th>Cantidad</th>
+                    <th>Unidad</th>
+                    <th>Dosis</th>
+                    <th>Instrucciones</th>
                     <th>Acciones</th>
                 </tr>
                 </thead>
@@ -115,11 +118,25 @@
                     <td th:text="${detalle.iddetalle}"></td>
                     <td th:text="'Receta #' + ${detalle.receta.idreceta}"></td>
                     <td th:text="${detalle.medicamento.nombremedicamento}"></td>
-                    <td th:text="${detalle.cantidad} + ' ' + ${detalle.unidad == 1 ? 'unid.' : (detalle.unidad == 2 ? 'mg' : (detalle.unidad == 3 ? 'ml' : 'g'))}"></td>
+                    <td th:text="${detalle.cantidad}"></td>
+                    <td>
+                <span th:switch="${detalle.unidad}">
+                    <span th:case="1">Unid.</span>
+                    <span th:case="2">mg</span>
+                    <span th:case="3">ml</span>
+                    <span th:case="4">g</span>
+                    <span th:case="*">-</span>
+                </span>
+                    </td>
+                    <td th:text="${detalle.dosis} ?: '-'"></td>
+                    <td th:text="${detalle.instrucciones} ?: '-'"
+                        style="max-width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
+                        th:attr="title=${detalle.instrucciones}"></td>
                     <td>
                         <a th:href="@{/detalle/edit/} + ${detalle.iddetalle}" class="btn btn-warning btn-sm">Editar</a>
                         <form th:action="@{/detalle/delete/} + ${detalle.iddetalle}" method="post" style="display: inline-block;">
-                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de eliminar este detalle?');">
+                            <button type="submit" class="btn btn-danger btn-sm"
+                                    onclick="return confirm('¿Estás seguro de eliminar este detalle?');">
                                 Eliminar
                             </button>
                         </form>
